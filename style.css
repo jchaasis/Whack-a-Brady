@@ -25,7 +25,7 @@ h1 {
   width: 100px;
   font-family: 'Amatic SC', cursive;
   font-size: 5rem;
-  margin-left: 45%;
+  
   background:rgba(255,255,255,0.2);
   border-radius:1rem;
   border-color: rgba(78, 51, 0, 0.945);
@@ -42,7 +42,6 @@ h1 {
   padding:0 3rem;
   line-height:1;
   border-radius:1rem;
-  
 }
 
 .game {
@@ -84,4 +83,46 @@ h1 {
 
 .hole.up .mole {
   top:0;
+}
+
+.gameOver {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 40%;
+  position: absolute;
+  z-index: 5;
+  border: 2px solid black;
+  background: rgb(249,210,105);
+  border-radius:1rem;
+  margin-left: 30%;
+}
+
+#gameOverHeader {
+  font-size: 3em;
+}
+
+.initialsInput {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.scoreInput {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  margin: 10px;
+  border-bottom: 2px solid black;
+  width: 40px;
+  height: 50px;
+  background:none;
+  text-align: center;
+  padding: 0px;
+  font-size: 2em;
+  text-transform:uppercase;
+}
+
+.gameOver .button {
+  font-size: 3em;
 }
