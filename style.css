@@ -85,6 +85,10 @@ h1 {
   top:0;
 }
 
+.hidden {
+  display: none;
+}
+
 .gameOver {
   display: flex;
   align-items: center;
@@ -123,6 +127,6 @@ h1 {
   text-transform:uppercase;
 }
 
-.gameOver .button {
+#gameOver .button {
   font-size: 3em;
 }

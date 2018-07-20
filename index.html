@@ -13,16 +13,14 @@
   <h1>Whack-a-Brady! <span class="score">0</span></h1>
   <button class="button" onClick="startGame()">Start!</button>
 
-  <div class="gameOver">
+  <div id="popup" class="hidden">
     <h2 id="gameOverHeader"> Game Over</h2>
-
     <div class="initialsInput">
       <input class="scoreInput" type="text" minlength="1" maxlength="1" onchange="updateL1(this.value)" required>
       <input class="scoreInput" type="text" minlength="1" maxlength="1" onchange="updateL2(this.value)" required>
       <input class="scoreInput" type="text" minlength="1" maxlength="1" onchange="updateL3(this.value)" required>
     </div>
       <button class="button" onclick="createPostRequest()" > Post </button>
-    
 
     <!-- <button class="button"> Post Score </button> -->
     <button class="button" onClick="startGame()"> Play Again </button>
@@ -127,8 +125,9 @@
   }
 
   function displayGameOver(){
-    let popup = document.createElement('div')
-    popup.className = 'gameOver';
+    let popup = document.getElementById('popup');
+
+    popup.classList.toggle('gameOver')
 
     // body.appendChild('div')
     // alert('game over')
@@ -145,21 +144,21 @@
   }
   
   function createPostRequest(){
-  
+    //combine the initials
     const initials = l1 + l2 + l3;
-
+    //make sure all the fields have been completed
+    if (initials.length < 3){
+      alert("Please complete all three blanks."); 
+      return};
+    //package the info
     let data = {
       user: initials,
       score: score,
     }
-    if (initials.length < 3){
-      alert("Please complete all three blanks."); 
-      return};
-    
+    //send the request
     fetch("http://localhost:4000/add", {
       method: 'post',
       body: JSON.stringify(data),
-      // mode: 'no-cors'
     }).then(resp=> console.log(resp))
     console.log(initials)
   }
