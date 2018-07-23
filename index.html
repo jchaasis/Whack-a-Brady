@@ -23,7 +23,7 @@
       <button class="button" onclick="createPostRequest()" > Post </button>
 
     <!-- <button class="button"> Post Score </button> -->
-    <button class="button" onClick="startGame()"> Play Again </button>
+    <button class="button" onClick="toggleGameOver()"> Play Again </button>
   </div>
 
   <div class="game">
@@ -47,6 +47,14 @@
     </div>
   </div>
 
+  <div id="scoresContainer">
+    <h1> High Scores</h1>
+    <table id="highScores">
+
+   
+    </table>
+  </div>
+
 <script>
   //call to the backend api
   let scores;
@@ -59,8 +67,8 @@
     // console.log(resp)
       // console.log(resp)
     .then(resp=>
-      scores = resp
-
+      buildTable(resp)
+  
     )
     // .catch(function(err) {
     //   // Error :(
@@ -70,7 +78,25 @@
   }
 
   getHighScores();
- 
+  let table = document.getElementById('highScores');
+  function buildTable(obj){
+   
+    console.log(obj.Scores)
+    let arr = obj.Scores;
+    
+    for(let i = 0; i<arr.length; i++){
+
+      let tableRow = document.createElement('tr');
+      let tableData = document.createElement('td');
+      console.log(arr[i].player)
+      //fill in the table data
+      tableData.textContent = `${arr[i].player}:${arr[i].score} `
+      //attach the table to the row
+      tableRow.appendChild(tableData)
+      //attach the row to the table
+      table.appendChild(tableRow)
+    }
+  }
 
   const holes = document.querySelectorAll('.hole');
   const scoreBoard = document.querySelector('.score');
@@ -114,7 +140,7 @@
     timeup = false;
     peep();
     setTimeout(()=> timeup = true, 10000);
-    setTimeout(()=> displayGameOver(), 10500);
+    setTimeout(()=> toggleGameOver(), 10500);
   }
 
   function bonk(e){
@@ -124,7 +150,7 @@
     scoreBoard.textContent = score;
   }
 
-  function displayGameOver(){
+  function toggleGameOver(){
     let popup = document.getElementById('popup');
 
     popup.classList.toggle('gameOver')
@@ -159,8 +185,7 @@
     fetch("http://localhost:4000/add", {
       method: 'post',
       body: JSON.stringify(data),
-    }).then(resp=> console.log(resp))
-    console.log(initials)
+    }).then(toggleGameOver())
   }
   
   moles.forEach(mole => mole.addEventListener('click', bonk));

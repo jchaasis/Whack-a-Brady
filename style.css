@@ -112,6 +112,16 @@ h1 {
   flex-direction: row;
 }
 
+#scoresContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#highScores {
+  font-size: 3em;
+}
+
 .scoreInput {
   border-top: none;
   border-right: none;
