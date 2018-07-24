@@ -9,14 +9,25 @@ html {
 }
 
 body {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 100%;
+  justify-items: center;
+  align-items: center;
   padding: 0;
   margin:0;
   font-family: 'Amatic SC', cursive;
 }
 
+#gameContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 h1 {
   text-align: center;
-  font-size: 10rem;
+  font-size: 5em;
   line-height:1;
   margin-bottom: 0;
 }
@@ -25,7 +36,6 @@ h1 {
   width: 100px;
   font-family: 'Amatic SC', cursive;
   font-size: 5rem;
-  
   background:rgba(255,255,255,0.2);
   border-radius:1rem;
   border-color: rgba(78, 51, 0, 0.945);
@@ -99,7 +109,7 @@ h1 {
   border: 2px solid black;
   background: rgb(249,210,105);
   border-radius:1rem;
-  margin-left: 30%;
+  margin: 0px; 
 }
 
 #gameOverHeader {
