@@ -24,12 +24,9 @@
   getHighScores();
   let table = document.getElementById('highScores');
   function buildTable(obj){
-   
-    console.log(obj.Scores)
     let arr = obj.Scores;
-    
+    //iterate through the data and create a highscore row for each element
     for(let i = 0; i<arr.length; i++){
-
       let tableRow = document.createElement('tr');
       let tableData = document.createElement('td');
       console.log(arr[i].player)
@@ -42,16 +39,19 @@
     }
   }
 
+  //nodes that will be modified
   const holes = document.querySelectorAll('.hole');
   const scoreBoard = document.querySelector('.score');
   const moles = document.querySelectorAll('.mole');
   const body = document.getElementsByTagName('body');
-
+  const clock = document.querySelector('.time');
   //store the individual initials
   let l1, l2, l3;
   let lastHole;
   let score = 0;
   let timeUp = false;
+
+  let time = 10;
 
   function randTime(min, max){
     return Math.round(Math.random()*(max-min) + min);
@@ -80,10 +80,16 @@
 
   function startGame(){
     scoreBoard.textContent = 0;
+    clock.textContent = 10;
+    time = 10;
     score = 0;
     timeup = false;
     peep();
+    //once the time is up, swith timeup to true so that the heads stop peeping
     setTimeout(()=> timeup = true, 10000);
+    //initiates the countdown clock
+    countDown();
+    //once the time has run out, display the gameover screen
     setTimeout(()=> toggleGameOver(), 10500);
   }
 
@@ -94,13 +100,20 @@
     scoreBoard.textContent = score;
   }
 
+  function countDown(){
+    //countdown
+    let count = setInterval(function(){
+        time--
+        clock.textContent = time
+    }, 1000)
+    //game over
+    setTimeout(()=> clearInterval(count), 10000);
+  }
+
   function toggleGameOver(){
     let popup = document.getElementById('popup');
-
+    //if gameover is not on the classlist, set it. If it is, remove it
     popup.classList.toggle('gameOver')
-
-    // body.appendChild('div')
-    // alert('game over')
   }
   //I know this is not the most efficient way to go about this, but I am going to do it this way for now.
   function updateL1(ev){

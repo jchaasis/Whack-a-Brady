@@ -13,7 +13,6 @@ body {
   grid-template-columns: 70% 30%;
   grid-template-rows: 100%;
   justify-items: center;
-  align-items: center;
   padding: 0;
   margin:0;
   font-family: 'Amatic SC', cursive;
@@ -48,6 +47,13 @@ h1 {
 }
 
 .score {
+  background:rgba(255,255,255,0.2);
+  padding:0 3rem;
+  line-height:1;
+  border-radius:1rem;
+}
+
+.time {
   background:rgba(255,255,255,0.2);
   padding:0 3rem;
   line-height:1;
@@ -126,6 +132,16 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: rgb(249,210,105);
+  border-radius:1rem;
+  padding: 5px;
+  overflow: scroll;
+}
+
+
+td {
+  border-bottom: 1px solid black;
+  padding: 5px;
 }
 
 #highScores {
