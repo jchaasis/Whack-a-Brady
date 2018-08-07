@@ -4,7 +4,7 @@
   let scores;
   function getHighScores(){
     // url (required), options (optional)
-    fetch("http://localhost:4000/", {
+    fetch("https://stark-refuge-67820.herokuapp.com/", {
       method: 'get'
       // mode: 'no-cors'
     }).then(resp => resp.json())
@@ -139,7 +139,7 @@
       score: score,
     }
     //send the request
-    fetch("http://localhost:4000/add", {
+    fetch("https://stark-refuge-67820.herokuapp.com/add", {
       method: 'post',
       body: JSON.stringify(data),
     }).then(toggleGameOver())
